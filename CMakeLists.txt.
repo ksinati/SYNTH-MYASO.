@@ -25,8 +25,8 @@ juce_add_plugin(SYNTH_MYASO
 )
 
 target_sources(SYNTH_MYASO PRIVATE
-    Source/PluginProcessor.cpp
-    Source/PluginEditor.cpp
+    PluginProcessor.cpp
+    PluginEditor.cpp
 )
 
 target_compile_features(SYNTH_MYASO PRIVATE cxx_std_17)
