@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.22)
+project(SYNTH_MYASO VERSION 1.0.0)
+
+include(FetchContent)
+
+FetchContent_Declare(JUCE
+    GIT_REPOSITORY https://github.com/juce-framework/JUCE.git
+    GIT_TAG 8.0.6
+    GIT_SHALLOW TRUE
+)
+
+FetchContent_MakeAvailable(JUCE)
+
+juce_add_plugin(SYNTH_MYASO
+    COMPANY_NAME "Basement Audio"
+    BUNDLE_ID "com.basementaudio.synthmyaso"
+    PLUGIN_MANUFACTURER_CODE Basm
+    PLUGIN_CODE Myas
+    FORMATS VST3
+    PRODUCT_NAME "SYNTH.MYASO"
+    IS_SYNTH TRUE
+    NEEDS_MIDI_INPUT TRUE
+    NEEDS_MIDI_OUTPUT FALSE
+    IS_MIDI_EFFECT FALSE
+)
+
+target_sources(SYNTH_MYASO PRIVATE
+    Source/PluginProcessor.cpp
+    Source/PluginEditor.cpp
+)
+
+target_compile_features(SYNTH_MYASO PRIVATE cxx_std_17)
+
+target_link_libraries(SYNTH_MYASO PRIVATE
+    juce::juce_audio_utils
+    juce::juce_dsp
+    juce::juce_recommended_config_flags
+    juce::juce_recommended_lto_flags
+    juce::juce_recommended_warning_flags
+)
+
+target_compile_definitions(SYNTH_MYASO PUBLIC
+    JUCE_WEB_BROWSER=0
+    JUCE_USE_CURL=0
+)
