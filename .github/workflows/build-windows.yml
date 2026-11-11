@@ -1,3 +1,4 @@
+
 name: Build Windows VST3
 
 on:
@@ -14,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure
-        - run: cmake -S "${{ github.workspace }}" -B build -A x64
+        run: cmake -S . -B build -A x64
 
       - name: Build
         run: cmake --build build --config Release --target SYNTH_MYASO
